@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>basic Info</title>
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/basic-info.css">
+    <link rel="stylesheet" type="text/css" href="../../index/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../index/css/common.css">
+    <link rel="stylesheet" href="../../index/css/basic-info.css"/>
 </head>
 <body>
 <form action="insert" method="post">
@@ -23,14 +22,21 @@
         <p class="content-title">Basic&nbsp;Information</p>
         <div class="input-box first-box">
             <div class="input-title">CSI&nbsp;Recruiting&nbsp;Department</div>
-            <select name="" id="" class="select-content">
+            <select name="department" id="" class="select-content">
                 <option value="">请选择</option>
+                <option value="mono">核心内审与卡交付部</option>
+                <option value="wZIt">其他</option>
             </select>
         </div>
         <div class="input-box">
             <div class="input-title">HSBC&nbsp;BU</div>
-            <select name="" id="" class="select-content">
+            <select name="hsbc_bu" id="" class="select-content">
                 <option value="">请选择</option>
+                <option value="boc">BOC</option>
+                <option value="hcc">HCC</option>
+                <option value="ccs">CCS</option>
+                <option value="cfit">CFIT</option>
+                <option value="">其他</option>
             </select>
         </div>
         <div class="input-box">
@@ -43,63 +49,68 @@
         </div>
         <div class="input-box">
             <div class="input-title">CSI&nbsp;Interviewer</div>
-            <input type="text" class="input-content">
+            <input type="text" name="csi_interviewer" class="input-content">
         </div>
         <div class="input-box">
             <div class="input-title">CSI&nbsp;Interviewer&nbsp;邮箱</div>
             <p class="input-tips">注：后续会关联自动显示邮箱，该表单提交后该邮箱会收到提醒，邮件内容为本表内容（可自定义）</p>
-            <input type="text" class="input-content">
+            <input type="text" name="interviewer_email" class="input-content">
         </div>
         <div class="input-box">
             <div class="input-title">HSBC&nbsp;Interviewer</div>
-            <input type="text" class="input-content">
+            <input type="text" name="hsbc_interviewer" class="input-content">
         </div>
         <div class="input-box">
             <div class="input-title">HSBC&nbsp;Interviewer&nbsp;邮箱</div>
             <p class="input-tips">注：后续会关联自动显示邮箱，该表单提交后该邮箱会收到提醒，邮件内容为本表内容（可自定义）</p>
-            <input type="text" class="input-content">
+            <input type="text" name="hsbc_intv_email" class="input-content">
         </div>
         <div class="input-box">
             <div class="input-title">Candidate Name</div>
-            <input type="text" class="input-content" placeholder="Chinese Name">
+            <input type="text" name="cn_name" class="input-content" placeholder="Chinese Name">
         </div>
         <div class="input-box">
             <div class="input-title">Candidate English Name</div>
-            <input type="text" class="input-content"/>
+            <input type="text" name="en_name" class="input-content"/>
         </div>
         <div class="input-box">
             <div class="input-title">Gender</div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="gender">男
+                <input type="radio" value="男" class="radio-input" name="gender">男
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="gender">女
+                <input type="radio" value="女" class="radio-input" name="gender">女
             </div>
         </div>
         <div class="input-box">
             <div class="input-title">Mobile Phone</div>
-            <input type="text" class="input-content"/>
+            <input name="phone" type="text" class="input-content"/>
         </div>
         <div class="input-box">
             <div class="input-title">Personal E-mail</div>
-            <input type="text" class="input-content"/>
+            <input type="email" class="input-content"/>
         </div>
         <div class="input-box">
             <div class="input-title">Home Town</div>
-            <input type="text" class="input-content"/>
+            <select style="width: 150px;" name="home_province" id="province" class="select-content" onchange="getCity()">
+                <option value="">-省/自治区/直辖市-</option>
+            </select>
+            <select name="home_city" id="city" class="select-content city-select">
+                <option value="">-市-</option>
+            </select>
         </div>
         <div class="input-box">
             <div class="input-title">Working Location</div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="location">Xi'an
+                <input value="Xi'an" type="radio" class="radio-input" name="work_location">Xi'an
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="location">Guangzhou
+                <input value="Guangzhou" type="radio" class="radio-input" name="work_location">Guangzhou
             </div>
         </div>
         <div class="input-box">
             <div class="input-title">ID Card Number</div>
-            <input type="text" class="input-content"/>
+            <input name="card_number" type="text" class="input-content"/>
         </div>
     </div>
     <!--Background Information-->
@@ -107,71 +118,71 @@
         <p class="content-title">Background&nbsp;Information</p>
         <div class="input-box first-box">
             <div class="input-title">University</div>
-            <input type="text" class="input-content">
+            <input name="university" type="text" class="input-content">
         </div>
         <div class="input-box">
             <div class="input-title">Degree</div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="degree">Bachelor degree
+                <input value="bachelor" type="radio" class="radio-input" name="degree">Bachelor degree
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="degree">Master degree
+                <input value="master" type="radio" class="radio-input" name="degree">Master degree
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="degree">Doctor degree
+                <input value="doctor" type="radio" class="radio-input" name="degree">Doctor degree
             </div>
         </div>
 
         <div class="input-box">
             <div class="input-title">Major</div>
-            <input type="text" class="input-content"/>
+            <input name="major" type="text" class="input-content"/>
         </div>
         <div class="input-box">
             <div class="input-title">Actual graduation Date</div>
-            <input type="text" class="input-content" id="datepicker"/>
+            <input name="graduation_date" type="text" class="input-content" id="datepicker"/>
         </div>
         <div class="input-box">
             <div class="input-title">Skills/Technology</div>
             <div class="radio-box">
-                <input type="checkbox" class="radio-input" name="skills">JAVA
+                <input value="java" type="checkbox" class="radio-input" name="skills[]">JAVA
             </div>
             <div class="radio-box">
-                <input type="checkbox" class="radio-input" name="skills">Mainframe
+                <input value="mainframe" type="checkbox" class="radio-input" name="skills[]">Mainframe
             </div>
             <div class="radio-box">
-                <input type="checkbox" class="radio-input" name="skills">AS400
+                <input value="AS400" type="checkbox" class="radio-input" name="skills[]">AS400
             </div>
             <div class="radio-box">
-                <input type="checkbox" class="radio-input" name="skills">C,C++,C#
+                <input value="C" type="checkbox" class="radio-input" name="skills[]">C,C++,C#
             </div>
             <div class="radio-box">
-                <input type="checkbox" class="radio-input other-check" name="skills">其他
+                <input id="otherSkill" type="checkbox" class="radio-input other-check" name="skills[]">其他
                 <input type="text" class="input-content other-input"/>
             </div>
         </div>
         <div class="input-box">
             <div class="input-title">Certification or Training</div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="training">PMP
+                <input value="PMP" type="radio" class="radio-input" name="certification">PMP
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="training">CET-4
+                <input value="CET-4" type="radio" class="radio-input" name="certification">CET-4
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="training">CET-6
+                <input value="CET-6" type="radio" class="radio-input" name="certification">CET-6
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input" name="training">专八
+                <input value="专八" type="radio" class="radio-input" name="certification">专八
             </div>
             <div class="radio-box">
-                <input type="radio" class="radio-input other-check" name="training">其他
+                <input value="other" type="radio" class="radio-input other-check" name="certification">其他
                 <input type="text" class="input-content other-input"/>
             </div>
         </div>
         <div class="input-box">
             <div class="input-title">Current</div>
             <div class="table-wrap">
-                <table class="cur-table">
+                <table class="cur-table" id="currentTable">
                     <thead>
                     <tr>
                         <th>Company</th>
@@ -179,6 +190,8 @@
                         <th>Job Duty</th>
                         <th>Team</th>
                         <th>Team Size</th>
+                        <th>Project Technical Skill</th>
+                        <th>Company Work Time</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -188,34 +201,36 @@
                         <td><input type="text"></td>
                         <td><input type="text"></td>
                         <td><input type="text"></td>
+                        <td><input class="cur-sp-input" type="text"></td>
+                        <td><input class="cur-sp-input" type="text"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="add-tr">+&nbsp;追加一条记录</div>
+            <div class="add-tr" onclick="addTableTr()">+&nbsp;追加一条记录</div>
         </div>
         <div class="input-box">
             <div class="input-title">Lead Experience</div>
-            <input type="text" class="input-content"/>
+            <input name="lead_experience" type="text" class="input-content"/>
         </div>
         <div class="input-box">
             <div class="input-title">Work Experience on MF/AS400</div>
             <p class="input-tips">Example：MF 5years/AS400 5years</p>
-            <input type="text" class="input-content"/>
+            <input name="work_experience" type="text" class="input-content"/>
         </div>
         <div class="input-box">
             <div class="input-title">Motivation of Change Job</div>
-            <input type="text" class="input-content"/>
+            <input name="change_job" type="text" class="input-content"/>
         </div>
     </div>
     <!--submit-->
     <footer>
-        <span class="submit-button">本轮完成，触发通知</span>
+        <button  type="submit" class="submit-button">本轮完成，触发通知</button>
     </footer>
 </div>
-<button type="submit">保存</button>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/basic-info.js"></script>
+</form>
+<script src="../../index/js/jquery.min.js"></script>
+<script src="../../index/js/jquery-ui.min.js"></script>
+<script src="../../index/js/basic-info.js"></script>
 </body>
 </html>
