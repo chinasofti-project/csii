@@ -11,6 +11,12 @@ class BasicController extends Controller
 {
     public function index()
     {
+        $htmls = $this->fetch();
+        return $htmls;
+    }
+
+    public function main()
+    {
         $Basic = new Basic; 
         $basics = $Basic->select();
 
@@ -24,13 +30,45 @@ class BasicController extends Controller
         return $htmls;
     }
 
+    public function login()
+    {
+        
+        $this->redirect(url('basic/main'));
+    }
+
     public function insert(){
-        $postData = Request::instance()->post();   
+        $postData = Request::instance()->post();
 
         $Basic = new Basic();
         
         $Basic->hr = $postData['hr'];
         $Basic->rm = $postData['rm'];
+        $Basic->department = $postData['department'];
+        $Basic->hsbc_bu = $postData['hsbc_bu'];
+        $Basic->csi_interviewer = $postData['csi_interviewer'];
+        $Basic->csi_interview_email = $postData['interviewer_email'];
+        $Basic->hsbc_interviewer = $postData['hsbc_interviewer'];
+        $Basic->hsbc_interviewer_email = $postData['hsbc_intv_email'];
+        $Basic->cn_name = $postData['cn_name'];
+        $Basic->en_name = $postData['en_name'];
+        $Basic->gender = $postData['gender'];
+        $Basic->phone = $postData['phone'];
+        $Basic->home_province = $postData['home_province'];
+        $Basic->home_city = $postData['home_city'];
+        $Basic->work_location = $postData['work_location'];
+        $Basic->card_number = $postData['card_number'];
+        $Basic->university = $postData['university'];
+        $Basic->degree = $postData['degree'];
+        $Basic->major = $postData['major'];
+        $Basic->graduation_date = $postData['graduation_date'];
+
+        $skilsArr = input('post.skills/a');
+  		$Basic->skills = implode(",",$skilsArr);
+
+  		$Basic->certification = $postData['certification'];
+  		$Basic->lead_experience = $postData['lead_experience'];
+  		$Basic->mf_as400 = $postData['work_experience'];
+  		$Basic->change_job = $postData['change_job'];
 
         $Basic->validate(true)->save();
 
@@ -74,6 +112,7 @@ class BasicController extends Controller
     }
 
     public function delete()
+    {
         $id = Request::instance()->param('id/d'); // “/d”表示将数值转化为“整形”
 
         if (is_null($id) || 0 === $id) {
