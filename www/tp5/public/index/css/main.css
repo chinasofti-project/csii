@@ -1,0 +1,104 @@
+.box{
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    width:699px;
+    min-height:750px;
+    margin: 0 0 0 -325px;
+    box-shadow:0 0 10px #E5E8E9;
+    -moz-box-shadow:0 0 10px #E5E8E9;
+    -webkit-box-shadow:0 0 10px #E5E8E9;
+    background: #f4f8fb;
+    padding-bottom: 10px;
+}
+.page-top{
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=1, startColorstr=#44abf5, endColorstr=#7a74fe)";
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#44abf5, endColorstr=#7a74fe);
+    background: -ms-linear-gradient(left, #44abf5, #7a74fe);
+    background: -webkit-linear-gradient(left,#44abf5,#7a74fe);
+    background:-moz-linear-gradient(left, #44abf5, #7a74fe);
+    background:-o-linear-gradient(left, #44abf5, #7a74fe);
+    height:90px;
+}
+.page-title{
+    font-size:26px;
+    color:#fff;
+    line-height: 90px;
+    text-align: center;
+}
+.content-box{
+    background: #fff;
+    border:1px solid #E2E4E5;
+    border-top:none;
+    box-shadow:0 0 5px #E5E8E9;
+    -moz-box-shadow:0 0 5px #E5E8E9;
+    -webkit-box-shadow:0 0 5px #E5E8E9;
+    min-height:500px;
+    position: relative;
+    padding:20px;
+}
+.btn-box{
+    padding:10px;
+    overflow: hidden;
+}
+.top-search{
+    width:260px;
+    height:38px;
+    border:1px solid #fff;
+    border-radius: 24px;
+    -moz-border-radius: 24px;
+    -webkit-border-radius: 24px;
+    background-color: #F4F8FB;
+    outline: none;
+    padding-left:25px;
+    float:right;
+    text-align: center;
+    color:#A09FA0;
+    margin-right: 10px;
+}
+.top-search::-webkit-input-placeholder{
+    color: #DCDDDE;
+}
+.top-search::-moz-placeholder{
+    color: #DCDDDE;
+}
+.top-search:-ms-input-placeholder{
+    color: #DCDDDE;
+}
+.add-btn{
+    float:right;
+    padding:8px 25px;
+    background-color: #44abf5;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    color:#fff;
+    cursor: pointer;
+}
+.add-btn:hover{
+    background-color: #7a74fe;
+}
+.add-btn:hover,.add-btn:active,.add-btn:link,.add-btn:visited{
+    color:#fff;
+    text-decoration:none;
+}
+
+.table-box{
+    background: #fff;
+    border:1px solid #E2E4E5;
+    box-shadow:0 0 5px #E5E8E9;
+    -moz-box-shadow:0 0 5px #E5E8E9;
+    -webkit-box-shadow:0 0 5px #E5E8E9;
+    min-height:50px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    position: relative;
+    overflow-x: auto;
+    padding:0;
+}
+
+.table.table-hover.table-bordered.info-table{
+    padding:0;
+    margin:0;
+}

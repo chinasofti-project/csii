@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HSBC Interview</title>
+    <link rel="stylesheet" type="text/css" href="../../index/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../index/css/common.css">
+    <link rel="stylesheet" href="../../index/css/basic-info.css"/>
+    <link rel="stylesheet" href="../../index/css/hsbc_interview.css"/>
+</head>
+<body>
+<form action="hsbc_interview" method="post">
+<div class="box">
+    <div class="page-top">
+        <p class="page-title">Step&nbsp;3:For HSBC Interviewer</p>
+    </div>
+    <div class="note">Welcome to the CSI interview system, please mark the score to the candidate according the HSBC interview</div>        
+    <h3>HSBC Interview</h3>
+   <!--Content--> 
+    <div class="content-box">        
+        <div class="input-box first-box">
+            <div class="input-title">Candidate&nbsp;Name</div>
+            <select name="candidate_name" id="" class="select-content">
+                <option value="">请选择</option>                
+            </select>
+            <select name="candidate_name" id="" class="select-content">
+                    <option value="">请选择</option>                   
+            </select>
+        </div>
+        <div class="input-box">
+            <div class="input-title">Candidate&nbsp;Mobile&nbsp;Number</div>
+            <select name="candidate_mobile_number" id="" class="select-content">
+                <option value="">请选择</option>                
+            </select>
+        </div>        
+        <div class="input-box">
+            <input class="input-title" type="checkbox" class="radio-input">Candidate&nbsp;Mobile&nbsp;Number-Nancy
+            <p class="interest_note">对此candidate感兴趣？可以<a href="#">点此</a>了解更多。</p>
+            <select id="" class="select-content">
+                    <option value="">请选择</option>                
+            </select>
+        </div>
+        <ul class="content-box">
+            <li>Candidate English Name:</li>
+            <li>Gender:</li>
+            <li>Work Location:</li>
+            <li>ID Card Number:</li>
+            <li>University:</li>
+            <li>Skills/Technology:</li>
+            <li>Certification or Training:</li>
+            <li>Current:</li>
+            <li>Work Experience on MF/AS400:</li>
+            <li>Motivation of Change Job:</li>
+        </ul>
+        <div class="input-box">
+            <div class="input-title">HSBC Interview Date</div>
+            <input name="" type="text" class="input-content" id="datepicker"/>
+        </div>
+        <div class="input-box">
+            <div class="input-title">Technical</div>
+            <div class="radio-box">
+                <input type="radio" class="radio-input" name="technical">较差
+                <input type="radio" class="radio-input" name="technical">一般
+                <input type="radio" class="radio-input" name="technical">中等
+                <input type="radio" class="radio-input" name="technical">良好
+                <input type="radio" class="radio-input" name="technical">优秀 
+            </div>
+        </div>
+        <div class="input-box">
+            <div class="input-title">Language</div>
+            <div class="radio-box">
+                <input type="radio" class="radio-input" name="language">较差
+                <input type="radio" class="radio-input" name="language">一般
+                <input type="radio" class="radio-input" name="language">中等
+                <input type="radio" class="radio-input" name="language">良好
+                <input type="radio" class="radio-input" name="language">优秀
+            </div>            
+        </div>
+        <div class="input-box">
+            <div class="input-title">Management</div>
+            <div class="radio-box">
+                <input type="radio" class="radio-input" name="management">较差
+                <input type="radio" class="radio-input" name="management">一般
+                <input type="radio" class="radio-input" name="management">中等
+                <input type="radio" class="radio-input" name="management">良好
+                <input type="radio" class="radio-input" name="management">优秀            
+            </div>
+        </div>
+        <div class="input-box">
+            <div class="input-title">Communication</div>
+            <div class="radio-box">
+                <input type="radio" class="radio-input" name="communication">较差
+                <input type="radio" class="radio-input" name="communication">一般
+                <input type="radio" class="radio-input" name="communication">中等
+                <input type="radio" class="radio-input" name="communication">良好
+                <input type="radio" class="radio-input" name="communication">优秀  
+            </div>           
+        </div>
+        <div class="input-box">
+            <div class="input-title">Domain</div>
+            <div class="radio-box">
+                <input type="radio" class="radio-input" name="domain">较差
+                <input type="radio" class="radio-input" name="domain">一般
+                <input type="radio" class="radio-input" name="domain">中等
+                <input type="radio" class="radio-input" name="domain">良好
+                <input type="radio" class="radio-input" name="domain">优秀  
+            </div>          
+        </div>
+        <div class="input-box">
+            <div class="input-title">Finally Result</div>
+            <div class="radio-box">
+                <input type="radio" value="PASS" class="radio-input" name="result">PASS
+            </div>
+            <div class="radio-box">
+                <input type="radio" value="Failure" class="radio-input" name="result">Failure
+            </div>
+        </div>
+        <div class="input-box">
+            <div class="input-title">Reject&nbsp;Reason*</div>
+            <input type="text" name="reason" class="input-content">
+        </div>
+        <div class="input-box">
+            <div class="input-title">Requirement&nbsp;for&nbsp;the&nbsp;Next&nbsp;Candidate</div>
+            <input type="text" name="requirement" class="input-content">
+        </div>
+    </div>         
+    <!--submit-->
+    <footer>
+        <button  type="submit" class="submit-button">面试完成，并触发通知</button>
+    </footer>
+</div>
+
+</form>
+<script src="../../index/js/jquery.min.js"></script>
+<script src="../../index/js/jquery-ui.min.js"></script>
+<script src="../../index/js/basic-info.js"></script>
+</body>
+</html>
