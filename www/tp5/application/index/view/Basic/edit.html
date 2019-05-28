@@ -23,13 +23,22 @@
             <p class="content-title">Basic&nbsp;Information</p>
             <div class="input-box first-box">
                 <div class="input-title">CSI&nbsp;Recruiting&nbsp;Department</div>
-                <select name="department" id="" class="select-content">
+                <select name="" id="bLine" class="select-content dp-select" onchange="getSecondDp()">
+                    <option value="">-请选择-</option>
+                </select>
+                <select name="" id="secondDp" class="select-content dp-select" onchange="getThirdDp()">
+                    <option value="">-请选择-</option>
+                </select>
+                <select  name="" id="thirdDp" class="select-content dp-select">
+                    <option value="">-请选择-</option>
+                </select>
+                <!--<select name="department" id="" class="select-content">
                     <option value="">请选择</option>
                     <option value="mono">核心内审与卡交付部</option>
                     <option value="wZIt">其他</option>
-                </select>
+                </select>-->
             </div>
-            <div class="input-box">
+            <!--<div class="input-box">
                 <div class="input-title">HSBC&nbsp;BU</div>
                 <select name="hsbc_bu" id="" class="select-content">
                     <option value="">请选择</option>
@@ -39,7 +48,7 @@
                     <option value="cfit">CFIT</option>
                     <option value="">其他</option>
                 </select>
-            </div>
+            </div>-->
             <div class="input-box">
                 <div class="input-title">HR</div>
                 <input type="text" name="hr" value="{$Basic->getData('hr')}" class="input-content" placeholder="Chinese Name for HR">

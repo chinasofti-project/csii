@@ -69,13 +69,60 @@ cityArr[30] = ['海南省', '海口市', '三亚市', '五指山市', '琼海市
 cityArr[31] = ['台湾省', '台北市', '高雄市', '基隆市', '台中市', '台南市', '新竹市', '嘉义市'];
 cityArr[32] = ['香港特别行政区', '中西区', '湾仔区', '东区', '南区', '油尖旺区', '深水埗区', '九龙城区', '黄大仙区', '观塘区', '荃湾区', '葵青区', '沙田区', '西贡区', '大埔区', '北区', '元朗区', '屯门区', '离岛区'];
 cityArr[33] = ['澳门特别行政区', '澳门'];
+//部门级联
+var line = [
+    {"name": "HSBC", "id": "11"},
+    {"name": "ODC", "id": "12"}
+];
+var sLine = [
+    {"name":"HSBC","childArr":[{"name": "RD", "id": "21"}, {"name": "HASE", "id": "22"}]},
+    {"name":"ODC","childArr":[{"name": "FFC", "id": "23"}]},
+];
+var tLine=[
+    {"name":"RD","childArr":[{'name': 'OBS', 'id': '31'}, {'name': 'WMD', 'id': '32'}]},
+    {"name":"HASE","childArr":[{'name': 'RB', 'id': '33'}, {'name': 'CMB', 'id': '34'}]},
+    {"name":"FFC","childArr":[{'name': 'AIA', 'id': '35'}]}
+];
+
 $(function () {
     initProvince();
+    initBusinessLine();
     $("#datepicker").datepicker({
         changeMonth: true,
         changeYear: true
     });
 });
+
+function initBusinessLine(){
+    for (var i = 0; i < line.length; i++) {
+        $("#bLine").append("<option value='" + line[i].id + "'>" + line[i].name + "</option>");
+    }
+}
+
+function getSecondDp(){
+    document.getElementById("secondDp").length = 1;
+    var curChoose=$('#bLine option:selected').text();
+    for (var i = 0; i < sLine.length; i++) {
+        if(sLine[i].name==curChoose){
+            for(var j=0;j<sLine[i].childArr.length;j++){
+                $("#secondDp").append("<option value='" + sLine[i].childArr[j].id + "'>" + sLine[i].childArr[j].name + "</option>");
+            }
+        }
+    }
+    getThirdDp();
+}
+
+function getThirdDp(){
+    document.getElementById("thirdDp").length = 1;
+    var curChoose=$('#secondDp option:selected').text();
+    for (var i = 0; i < tLine.length; i++) {
+        if(tLine[i].name==curChoose){
+            for(var j=0;j<tLine[i].childArr.length;j++){
+                $("#thirdDp").append("<option value='" + tLine[i].childArr[j].id + "'>" + tLine[i].childArr[j].name + "</option>");
+            }
+        }
+    }
+}
 
 function initProvince() {
     for (var i = 0; i < provinceArr.length; i++) {
@@ -101,15 +148,15 @@ function getCity() {
     }
 }
 
-function addTableTr(){
-    var htmlTr='<tr>'+
-        '<td><input type="text"></td>'+
-        '<td><input type="text"></td>'+
-        '<td><input type="text"></td>'+
-        '<td><input type="text"></td>'+
-        '<td><input type="text"></td>'+
-        '<td><input class="cur-sp-input" type="text"></td>'+
-        '<td><input class="cur-sp-input" type="text"></td>'+
+function addTableTr() {
+    var htmlTr = '<tr>' +
+        '<td><input type="text"></td>' +
+        '<td><input type="text"></td>' +
+        '<td><input type="text"></td>' +
+        '<td><input type="text"></td>' +
+        '<td><input type="text"></td>' +
+        '<td><input class="cur-sp-input" type="text"></td>' +
+        '<td><input class="cur-sp-input" type="text"></td>' +
         '</tr>';
     $("#currentTable").append(htmlTr);
 }
