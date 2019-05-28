@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>basic Info</title>
-    <link rel="stylesheet" type="text/css" href="../../index/css/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="../../index/css/common.css">
-    <link rel="stylesheet" href="../../index/css/basic-info.css"/>
+    <link rel="stylesheet" type="text/css" href="/tp5/public/index/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/tp5/public/index/css/common.css">
+    <link rel="stylesheet" href="/tp5/public/index/css/basic-info.css"/>
 </head>
 <body>
 <form action="{:url('update')}" method="post">
@@ -23,85 +23,95 @@
             <p class="content-title">Basic&nbsp;Information</p>
             <div class="input-box first-box">
                 <div class="input-title">CSI&nbsp;Recruiting&nbsp;Department</div>
-                <select name="" id="" class="select-content">
+                <select name="department" id="" class="select-content">
                     <option value="">请选择</option>
+                    <option value="mono">核心内审与卡交付部</option>
+                    <option value="wZIt">其他</option>
                 </select>
             </div>
             <div class="input-box">
                 <div class="input-title">HSBC&nbsp;BU</div>
-                <select name="" id="" class="select-content">
+                <select name="hsbc_bu" id="" class="select-content">
                     <option value="">请选择</option>
+                    <option value="boc">BOC</option>
+                    <option value="hcc">HCC</option>
+                    <option value="ccs">CCS</option>
+                    <option value="cfit">CFIT</option>
+                    <option value="">其他</option>
                 </select>
             </div>
             <div class="input-box">
                 <div class="input-title">HR</div>
-                <input type="text" name="hr" value="{$Basic->getData('hr')}" class="input-content"
-                       placeholder="Chinese Name for HR">
+                <input type="text" name="hr" value="{$Basic->getData('hr')}" class="input-content" placeholder="Chinese Name for HR">
             </div>
             <div class="input-box">
                 <div class="input-title">RM</div>
-                <input type="text" name="rm" value="{$Basic->getData('rm')}" class="input-content"
-                       placeholder="Chinese Name for RM">
+                <input type="text" name="rm" value="{$Basic->getData('rm')}" class="input-content" placeholder="Chinese Name for RM">
             </div>
             <div class="input-box">
                 <div class="input-title">CSI&nbsp;Interviewer</div>
-                <input type="text" class="input-content">
+                <input type="text" value="{$Basic->getData('csi_interviewer')}" name="csi_interviewer" class="input-content">
             </div>
             <div class="input-box">
                 <div class="input-title">CSI&nbsp;Interviewer&nbsp;邮箱</div>
                 <p class="input-tips">注：后续会关联自动显示邮箱，该表单提交后该邮箱会收到提醒，邮件内容为本表内容（可自定义）</p>
-                <input type="text" class="input-content">
+                <input type="text" value="{$Basic->getData('csi_interview_email')}" name="interviewer_email" class="input-content">
             </div>
             <div class="input-box">
                 <div class="input-title">HSBC&nbsp;Interviewer</div>
-                <input type="text" class="input-content">
+                <input type="text" value="{$Basic->getData('hsbc_interviewer')}" name="hsbc_interviewer" class="input-content">
             </div>
             <div class="input-box">
                 <div class="input-title">HSBC&nbsp;Interviewer&nbsp;邮箱</div>
                 <p class="input-tips">注：后续会关联自动显示邮箱，该表单提交后该邮箱会收到提醒，邮件内容为本表内容（可自定义）</p>
-                <input type="text" class="input-content">
+                <input type="text" value="{$Basic->getData('hsbc_interviewer_email')}" name="hsbc_intv_email" class="input-content">
             </div>
             <div class="input-box">
                 <div class="input-title">Candidate Name</div>
-                <input type="text" class="input-content" placeholder="Chinese Name">
+                <input type="text"value="{$Basic->getData('cn_name')}"  name="cn_name" class="input-content" placeholder="Chinese Name">
             </div>
             <div class="input-box">
                 <div class="input-title">Candidate English Name</div>
-                <input type="text" class="input-content"/>
+                <input type="text" value="{$Basic->getData('en_name')}" name="en_name" class="input-content"/>
             </div>
             <div class="input-box">
                 <div class="input-title">Gender</div>
                 <div class="radio-box">
-                    <input type="radio" class="radio-input" name="gender">男
+                    <input type="radio" value="男" class="radio-input" name="gender">男
                 </div>
                 <div class="radio-box">
-                    <input type="radio" class="radio-input" name="gender">女
+                    <input type="radio" value="女" class="radio-input" name="gender">女
                 </div>
             </div>
             <div class="input-box">
                 <div class="input-title">Mobile Phone</div>
-                <input type="text" class="input-content"/>
+                <input name="phone" value="{$Basic->getData('phone')}" type="text" class="input-content"/>
             </div>
             <div class="input-box">
                 <div class="input-title">Personal E-mail</div>
-                <input type="text" class="input-content"/>
+                <input type="email" class="input-content"/>
             </div>
             <div class="input-box">
                 <div class="input-title">Home Town</div>
-                <input type="text" class="input-content"/>
+                <select style="width: 150px;" name="home_province" id="province" class="select-content" onchange="getCity()">
+                    <option value="">-省/自治区/直辖市-</option>
+                </select>
+                <select name="home_city" id="city" class="select-content city-select">
+                    <option value="">-市-</option>
+                </select>
             </div>
             <div class="input-box">
                 <div class="input-title">Working Location</div>
                 <div class="radio-box">
-                    <input type="radio" class="radio-input" name="location">Xi'an
+                    <input value="Xi'an" type="radio" class="radio-input" name="work_location">Xi'an
                 </div>
                 <div class="radio-box">
-                    <input type="radio" class="radio-input" name="location">Guangzhou
+                    <input value="Guangzhou" type="radio" class="radio-input" name="work_location">Guangzhou
                 </div>
             </div>
             <div class="input-box">
                 <div class="input-title">ID Card Number</div>
-                <input type="text" class="input-content"/>
+                <input name="card_number" value="{$Basic->getData('card_number')}" type="text" class="input-content"/>
             </div>
         </div>
         <!--Background Information-->
@@ -216,8 +226,8 @@
         </footer>
     </div>
 </form>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/jquery-ui.min.js"></script>
-<script src="../../js/basic-info.js"></script>
+<script src="/tp5/public/index/js/jquery.min.js"></script>
+<script src="/tp5/public/index/js/jquery-ui.min.js"></script>
+<script src="/tp5/public/index/js/basic-info.js"></script>
 </body>
 </html>

@@ -1,14 +1,18 @@
 <?php
+
 namespace app\index\controller;
-use think\Db;      
-use think\Controller;   
+
+use think\Db;
+use think\Controller;
 use think\Request;
 use app\common\model\Basic;
-
-
+use app\common\model\User;
+use SESSION;
 
 class BasicController extends Controller
 {
+    protected $u_id;
+
     public function index()
     {
         $htmls = $this->fetch();
@@ -17,9 +21,11 @@ class BasicController extends Controller
 
     public function main()
     {
-        $Basic = new Basic; 
-        $basics = $Basic->select();
+        $u_id = session('u_id');
+        $u_ids = db('user')->where(['id'=>$u_id])->whereOr(['f_id'=>$u_id])->column('id');
 
+        $Basic = new Basic;
+        $basics = $Basic->where(['u_id'=>['in',$u_ids] ])->select();
         // 向V层传数据
         $this->assign('basics', $basics);
 
@@ -30,17 +36,53 @@ class BasicController extends Controller
         return $htmls;
     }
 
-    public function login()
+    public function cs_interviewer()
     {
-        
-        $this->redirect(url('basic/main'));
+        $htmls = $this->fetch();
+        return $htmls;
+
     }
 
-    public function insert(){
+    public function hsbc_interview()
+    {
+          $htmls = $this->fetch();
+          return $htmls;
+
+    }
+
+    public function login()
+    {
+        $login_name = Request::instance()->param('login_name/s');
+        $password = Request::instance()->param('password/s');
+        if (empty($login_name)) {
+            return '请输入登录的用户名';
+        }
+        if (empty($password)) {
+            return '密码不能为空';
+        }
+        $res = db('user')->where(['login_name' => $login_name, 'user_password' => $password])->find();
+        if ($res) {
+            session("u_id", $res['id']);
+            if ($res['role_type'] == 'csi') {
+                $this->redirect(url('basic/cs_interviewer'));
+            } else if ($res['role_type'] == 'hsbc') {
+                 $this->redirect(url('basic/hsbc_interview'));
+            }else {
+                $this->redirect(url('basic/main'));
+            }
+
+        } else {
+            return '密码错误';
+        }
+
+    }
+
+    public function insert()
+    {
         $postData = Request::instance()->post();
 
         $Basic = new Basic();
-        
+        $Basic->u_id = session('u_id');
         $Basic->hr = $postData['hr'];
         $Basic->rm = $postData['rm'];
         $Basic->department = $postData['department'];
@@ -63,17 +105,18 @@ class BasicController extends Controller
         $Basic->graduation_date = $postData['graduation_date'];
 
         $skilsArr = input('post.skills/a');
-  		$Basic->skills = implode(",",$skilsArr);
+        $Basic->skills = implode(",", $skilsArr);
 
-  		$Basic->certification = $postData['certification'];
-  		$Basic->lead_experience = $postData['lead_experience'];
-  		$Basic->mf_as400 = $postData['work_experience'];
-  		$Basic->change_job = $postData['change_job'];
+        $Basic->certification = $postData['certification'];
+        $Basic->lead_experience = $postData['lead_experience'];
+        $Basic->mf_as400 = $postData['work_experience'];
+        $Basic->change_job = $postData['change_job'];
 
         $Basic->validate(true)->save();
 
-        return  '新增成功。新增ID为:' . $Basic->id;
 
+        //return  '新增成功。新增ID为:' . $Basic->id;
+        return $this->success('新增成功', url('basic/main'));
     }
 
     public function add()
@@ -129,6 +172,6 @@ class BasicController extends Controller
             return $this->error('删除失败:' . $Basic->getError());
         }
 
-        return $this->success('删除成功', url('index'));
+        return $this->success('删除成功', url('basic/main'));
     }
 }
