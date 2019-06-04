@@ -23,13 +23,13 @@
             <p class="content-title">Basic&nbsp;Information</p>
             <div class="input-box first-box">
                 <div class="input-title">CSI&nbsp;Recruiting&nbsp;Department</div>
-                <select name="" id="bLine" class="select-content dp-select" onchange="getSecondDp()">
+                <select name="" id="bLine" class="select-content dp-select" onchange="getSecondDp()" required>
                     <option value="">-请选择-</option>
                 </select>
-                <select name="" id="secondDp" class="select-content dp-select" onchange="getThirdDp()">
+                <select name="" id="secondDp" class="select-content dp-select" onchange="getThirdDp()" required>
                     <option value="">-请选择-</option>
                 </select>
-                <select  name="" id="thirdDp" class="select-content dp-select">
+                <select  name="" id="thirdDp" class="select-content dp-select" required>
                     <option value="">-请选择-</option>
                 </select>
                 <!--<select name="department" id="" class="select-content">
@@ -50,41 +50,41 @@
                 </select>
             </div>-->
             <div class="input-box">
-                <div class="input-title">HR</div>
-                <input type="text" name="hr" value="{$Basic->getData('hr')}" class="input-content" placeholder="Chinese Name for HR">
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>HR</div>
+                <input type="text" name="hr" value="{$Basic->getData('hr')}" class="input-content" placeholder="Chinese Name for HR" required>
             </div>
             <div class="input-box">
-                <div class="input-title">RM</div>
-                <input type="text" name="rm" value="{$Basic->getData('rm')}" class="input-content" placeholder="Chinese Name for RM">
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>RM</div>
+                <input type="text" name="rm" value="{$Basic->getData('rm')}" class="input-content" placeholder="Chinese Name for RM" required>
             </div>
             <div class="input-box">
-                <div class="input-title">CSI&nbsp;Interviewer</div>
-                <input type="text" value="{$Basic->getData('csi_interviewer')}" name="csi_interviewer" class="input-content">
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>CSI&nbsp;Interviewer</div>
+                <input type="text" value="{$Basic->getData('csi_interviewer')}" name="csi_interviewer" class="input-content" required>
             </div>
             <div class="input-box">
                 <div class="input-title">CSI&nbsp;Interviewer&nbsp;邮箱</div>
                 <p class="input-tips">注：后续会关联自动显示邮箱，该表单提交后该邮箱会收到提醒，邮件内容为本表内容（可自定义）</p>
-                <input type="text" value="{$Basic->getData('csi_interview_email')}" name="interviewer_email" class="input-content">
+                <input type="text" value="{$Basic->getData('csi_interviewer_email')}" name="csi_interviewer_email" class="input-content">
             </div>
             <div class="input-box">
-                <div class="input-title">HSBC&nbsp;Interviewer</div>
-                <input type="text" value="{$Basic->getData('hsbc_interviewer')}" name="hsbc_interviewer" class="input-content">
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>HSBC&nbsp;Interviewer</div>
+                <input type="text" value="{$Basic->getData('hsbc_interviewer')}" name="hsbc_interviewer" class="input-content" required>
             </div>
             <div class="input-box">
                 <div class="input-title">HSBC&nbsp;Interviewer&nbsp;邮箱</div>
                 <p class="input-tips">注：后续会关联自动显示邮箱，该表单提交后该邮箱会收到提醒，邮件内容为本表内容（可自定义）</p>
-                <input type="text" value="{$Basic->getData('hsbc_interviewer_email')}" name="hsbc_intv_email" class="input-content">
+                <input type="text" value="{$Basic->getData('hsbc_interviewer_email')}" name="hsbc_interviewer_email" class="input-content">
             </div>
             <div class="input-box">
-                <div class="input-title">Candidate Name</div>
-                <input type="text"value="{$Basic->getData('cn_name')}"  name="cn_name" class="input-content" placeholder="Chinese Name">
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>Candidate Name</div>
+                <input type="text"value="{$Basic->getData('cn_name')}"  name="cn_name" class="input-content" placeholder="Chinese Name" required>
             </div>
             <div class="input-box">
                 <div class="input-title">Candidate English Name</div>
                 <input type="text" value="{$Basic->getData('en_name')}" name="en_name" class="input-content"/>
             </div>
             <div class="input-box">
-                <div class="input-title">Gender</div>
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>Gender</div>
                 <div class="radio-box">
                     <input type="radio" value="男" class="radio-input" name="gender">男
                 </div>
@@ -93,12 +93,12 @@
                 </div>
             </div>
             <div class="input-box">
-                <div class="input-title">Mobile Phone</div>
-                <input name="phone" value="{$Basic->getData('phone')}" type="text" class="input-content"/>
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>Mobile Phone</div>
+                <input name="phone" value="{$Basic->getData('phone')}" type="text" class="input-content" required/>
             </div>
             <div class="input-box">
-                <div class="input-title">Personal E-mail</div>
-                <input type="email" class="input-content"/>
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>Personal E-mail</div>
+                <input type="email" class="input-content" required/>
             </div>
             <div class="input-box">
                 <div class="input-title">Home Town</div>
@@ -152,7 +152,7 @@
                 <input type="text" class="input-content" id="datepicker"/>
             </div>
             <div class="input-box">
-                <div class="input-title">Skills/Technology</div>
+                <div class="input-title"><span style="color:red;vertical-align: middle" >*&nbsp;</span>Skills/Technology</div>
                 <div class="radio-box">
                     <input type="checkbox" class="radio-input" name="skills">JAVA
                 </div>

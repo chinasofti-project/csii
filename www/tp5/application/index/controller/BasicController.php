@@ -86,28 +86,28 @@ class BasicController extends Controller
         $Basic->hr = $postData['hr'];
         $Basic->rm = $postData['rm'];
         $Basic->department = $postData['department'];
-        $Basic->hsbc_bu = $postData['hsbc_bu'];
+        //$Basic->hsbc_bu = $postData['hsbc_bu'];
         $Basic->csi_interviewer = $postData['csi_interviewer'];
-        $Basic->csi_interview_email = $postData['interviewer_email'];
+        $Basic->csi_interviewer_email = $postData['csi_interviewer_email'];
         $Basic->hsbc_interviewer = $postData['hsbc_interviewer'];
-        $Basic->hsbc_interviewer_email = $postData['hsbc_intv_email'];
+        $Basic->hsbc_interviewer_email = $postData['hsbc_interviewer_email'];
         $Basic->cn_name = $postData['cn_name'];
         $Basic->en_name = $postData['en_name'];
         $Basic->gender = $postData['gender'];
         $Basic->phone = $postData['phone'];
         $Basic->home_province = $postData['home_province'];
         $Basic->home_city = $postData['home_city'];
-        $Basic->work_location = $postData['work_location'];
+        //$Basic->work_location = $postData['work_location'];
         $Basic->card_number = $postData['card_number'];
         $Basic->university = $postData['university'];
-        $Basic->degree = $postData['degree'];
+        //$Basic->degree = $postData['degree'];
         $Basic->major = $postData['major'];
         $Basic->graduation_date = $postData['graduation_date'];
 
         $skilsArr = input('post.skills/a');
         $Basic->skills = implode(",", $skilsArr);
 
-        $Basic->certification = $postData['certification'];
+        //$Basic->certification = $postData['certification'];
         $Basic->lead_experience = $postData['lead_experience'];
         $Basic->mf_as400 = $postData['work_experience'];
         $Basic->change_job = $postData['change_job'];
@@ -173,5 +173,21 @@ class BasicController extends Controller
         }
 
         return $this->success('删除成功', url('basic/main'));
+    }
+
+
+    public function detail()
+    {
+        $id = Request::instance()->param('id/d');
+
+        if ($Basic = Basic::get($id)) {
+            $this->assign('Basic', $Basic);
+
+            $htmls = $this->fetch();
+
+            return $htmls;
+        } else {
+            return '系统未找到ID为' . $id . '的记录';
+        }
     }
 }
