@@ -97,17 +97,23 @@ class BasicController extends Controller
         $Basic->phone = $postData['phone'];
         $Basic->home_province = $postData['home_province'];
         $Basic->home_city = $postData['home_city'];
-        //$Basic->work_location = $postData['work_location'];
+        if(isset($postData['work_location'])){
+            $Basic->work_location = $postData['work_location'];
+        }
         $Basic->card_number = $postData['card_number'];
         $Basic->university = $postData['university'];
-        //$Basic->degree = $postData['degree'];
+        if(isset($postData['degree'])){
+            $Basic->degree = $postData['degree'];
+        }
         $Basic->major = $postData['major'];
         $Basic->graduation_date = $postData['graduation_date'];
-
         $skilsArr = input('post.skills/a');
-        $Basic->skills = implode(",", $skilsArr);
-
-        //$Basic->certification = $postData['certification'];
+        if(isset($skilsArr)){
+            $Basic->skills = implode(",", $skilsArr);
+        }
+        if(isset($postData['certification'])){
+            $Basic->degree = $postData['certification'];
+        }
         $Basic->lead_experience = $postData['lead_experience'];
         $Basic->mf_as400 = $postData['work_experience'];
         $Basic->change_job = $postData['change_job'];

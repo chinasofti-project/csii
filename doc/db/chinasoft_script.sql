@@ -89,3 +89,5 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 );
 
+--table update
+ALTER TABLE basic CHANGE csi_interview_email csi_interviewer_email VARCHAR(64);
