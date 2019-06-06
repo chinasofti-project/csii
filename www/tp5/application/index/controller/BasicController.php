@@ -7,6 +7,7 @@ use think\Controller;
 use think\Request;
 use app\common\model\Basic;
 use app\common\model\User;
+use app\common\model\Csiifb;
 use SESSION;
 
 class BasicController extends Controller
@@ -25,7 +26,23 @@ class BasicController extends Controller
         $u_ids = db('user')->where(['id'=>$u_id])->whereOr(['f_id'=>$u_id])->column('id');
 
         $Basic = new Basic;
-        $basics = $Basic->where(['u_id'=>['in',$u_ids] ])->select();
+        $keyword = Request::instance()->param('keyword/s');
+        if($keyword)
+        {
+            $where['cn_name|phone'] = ['like','%'.$keyword.'%'];
+        }
+
+        $where['u_id'] = ['in',$u_ids];
+        $basics = $Basic->where($where)->select();
+        if($basics)
+        {
+            foreach($basics as $key =>$val){
+
+            $basics[$key]['step'] = $this->get_step($val['step']);
+            $basics[$key]['status'] = $this->get_status($val['status']);
+
+            }
+        }
         // 向V层传数据
         $this->assign('basics', $basics);
 
@@ -36,11 +53,55 @@ class BasicController extends Controller
         return $htmls;
     }
 
+
+    public function  get_step($step)
+    {
+       switch($step)
+       {
+         case 1:
+           return $str = '初始录入';
+                 break;
+         case 2:
+             return $str = '中软面试';
+                break;
+         case 3:
+             return $str = '客户面试';
+                break;
+       }
+
+    }
+
+
+     public function  get_status($step)
+     {
+           switch($step)
+           {
+             case 1:
+               return $str = 'progressing';
+                     break;
+             case 2:
+                 return $str = 'CSI-PASS';
+                    break;
+             case 3:
+                 return $str = 'CSI-FAILED';
+                    break;
+             case 2:
+                  return $str = 'CUI-PASS';
+                    break;
+             case 3:
+                   return $str = 'CUI-FAILED';
+                    break;
+           }
+
+      }
+
+
+
     public function cs_interviewer()
     {
-        $htmls = $this->fetch();
-        return $htmls;
 
+             $htmls = $this->fetch();
+              return $htmls;
     }
 
     public function hsbc_interview()
@@ -86,7 +147,7 @@ class BasicController extends Controller
         $Basic->hr = $postData['hr'];
         $Basic->rm = $postData['rm'];
         $Basic->department = $postData['department'];
-        //$Basic->hsbc_bu = $postData['hsbc_bu'];
+        $Basic->hsbc_bu = $postData['hsbc_bu'];
         $Basic->csi_interviewer = $postData['csi_interviewer'];
         $Basic->csi_interviewer_email = $postData['csi_interviewer_email'];
         $Basic->hsbc_interviewer = $postData['hsbc_interviewer'];
@@ -104,9 +165,10 @@ class BasicController extends Controller
         $Basic->university = $postData['university'];
         if(isset($postData['degree'])){
             $Basic->degree = $postData['degree'];
-        }
+        
         $Basic->major = $postData['major'];
         $Basic->graduation_date = $postData['graduation_date'];
+
         $skilsArr = input('post.skills/a');
         if(isset($skilsArr)){
             $Basic->skills = implode(",", $skilsArr);
@@ -181,6 +243,70 @@ class BasicController extends Controller
         return $this->success('删除成功', url('basic/main'));
     }
 
+    public function csiSearch(){
+         $candidate_name = Request::instance()->param('candidate_name/s');
+         $mobile_phone = Request::instance()->param('mobile_phone/s');
+        if($candidate_name && $mobile_phone)
+        {
+             $csidata = db('basic')->where(['cn_name' => $candidate_name, 'phone' => $mobile_phone])->find();
+             if($csidata)
+             {
+                  session('csi_cid',$csidata['id']);
+                  session('csi_cName',$csidata['cn_name']);
+                  $this->assign('csidata', $csidata);
+                   // 取回打包后的数据
+                  $htmls = $this->fetch('Basic/cs_interviewer');
+                    // 将数据返回给用户
+                  return $htmls;
+             }else{
+                   return '无记录';
+             }
+
+        }else{
+
+               return '无记录';
+
+        }
+
+    }
+
+    public function csiInsert(){
+        $postCsiData = Request::instance()->post();
+
+        $Csiifb = new Csiifb();
+
+        $Csiifb->cid = session('csi_cid');
+        $Csiifb->cn_name = session('csi_cName');
+        $Csiifb->introduction = $postCsiData['introduction'];
+        $Csiifb->speaking = $postCsiData['speaking'];
+        $Csiifb->listening = $postCsiData['listening'];
+        $Csiifb->reading = $postCsiData['reading'];
+        $Csiifb->writing = $postCsiData['writing'];
+        $Csiifb->cantonese = $postCsiData['cantonese'];
+        $Csiifb->exist_role = $postCsiData['exist_role'];
+        $Csiifb->domain_knowledge = $postCsiData['domain_knowledge'];
+        $Csiifb->system_design = $postCsiData['system_design'];
+        $Csiifb->technical = $postCsiData['technical'];
+        $Csiifb->technical_score = $postCsiData['technical_score'];
+        $Csiifb->motivation = $postCsiData['motivation'];
+        $Csiifb->career_plan = $postCsiData['career_plan'];
+        $Csiifb->expession = $postCsiData['expession'];
+        $Csiifb->question_asked = $postCsiData['question_asked'];
+        $Csiifb->finally_rating = $postCsiData['finally_rating'];
+        $Csiifb->work_date = $postCsiData['work_date'];
+        $Csiifb->result = $postCsiData['result'];
+
+        $Csiifb->validate(true)->save();
+        //更新basic状态
+        $status_data =[
+                               'step'=>'2',
+                               'status'=>$Csiifb['result']
+                      ];
+                            $res =db('basic')->where('id',$Csiifb['cid'])->update($status_data);
+                            //echo db('basic')->getlastsql();die;
+        return '保存成功';
+
+    }
 
     public function detail()
     {
@@ -197,3 +323,6 @@ class BasicController extends Controller
         }
     }
 }
+
+}
+

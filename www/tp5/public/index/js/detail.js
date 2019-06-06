@@ -1,0 +1,9 @@
+$(()=>{
+	$(".detail").click(function(e){
+        e.preventDefault();
+        $(".show_detail").show();
+    });
+    $(".close").click(function(){
+        $(".show_detail").hide();
+    })
+});

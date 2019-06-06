@@ -16,7 +16,10 @@
     <div class="row content-box">
         <div class="col-md-12 btn-box">
             <a class="add-btn" href="{:url('add')}">新增</a>
-            <input class="top-search" type="text" placeholder="搜索">
+            <form class="search-box" action="main"  method='get'>
+                <input class="top-search" type="text" name='keyword' placeholder="候选人姓名 / 电话" value="">
+                <button class="search-btn">搜索</button>
+            </form>
         </div>
         <!--table-->
         <div class="col-md-12 table-box">
@@ -42,10 +45,8 @@
                     <td>{$basic->getData('phone')}</td>
                     <td>{$basic->getData('csi_interviewer')}</td>
                     <td>{$basic->getData('hsbc_interviewer')}</td>
-                    <td></td>
-                    <td></td>
-                    <!--<td>{$basic->getData('step')}</td>
-                    <td>{$basic->getData('status')}</td>-->
+                    <td>{$basic->getData('step')}</td>
+                    <td>{$basic->getData('status')}</td>
                     <td>
                         <a href="{:url('edit?id=' . $basic->getData('id'))}">编辑</a>
                         &nbsp;&nbsp;

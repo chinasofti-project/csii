@@ -17,61 +17,65 @@
         <p class="page-title">中软国际面试官</p>
     </header>
     <section>
+        <form action="csiSearch" method="get">
         <div class="main-box">
             <p class="content-title">Search</p>
             <div class="input-box">
-                <label class="input-label">CSI Recruiting Department</label>
-                <input class="input-content" type="text">
+                <label class="input-label">Candidate Name</label>
+                <input class="input-content" name="candidate_name" type="text" value="{$csidata['cn_name']?$csidata['cn_name']:''}">
             </div>
             <div class="input-box">
-                <label class="input-label">Candidate Name</label>
-                <input class="input-content" type="text">
+                <label class="input-label">Mobile Phone</label>
+                <input class="input-content" name="mobile_phone" type="text" value="{$csidata['phone']?$csidata['phone']:''}">
+            </div>
+            <div class="ser-box">
+                <b></b>
+                <button class="search-btn">search</button>
             </div>
         </div>
+
         <div class="main-box">
             <p class="content-title">Basic Information</p>
             <div class="basic-input-box">
                 <label>CSI Recruiting Department :</label>
-                <div><input class="hide-input" readonly type="text" value="交付部"></div>
-            </div>
-            <div class="basic-input-box">
-                <label>HSBC BU :</label>
-                <input class="hide-input" readonly type="text" value="123">
+                <input class="hide-input" readonly type="text" value="{$csidata['department']?$csidata['department']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Working Location :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['work_location']?$csidata['work_location']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Candidate Mobile Number :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['phone']?$csidata['phone']:''}">
             </div>
             <div class="basic-input-box">
                 <label>University :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['university']?$csidata['university']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Skills/Technology :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['skills']?$csidata['skills']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Certification or Training :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['certification']?$csidata['certification']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Lead Experience :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['lead_experience']?$csidata['lead_experience']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Work Experience on MF/AS400 :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['mf_as400']?$csidata['mf_as400']:''}">
             </div>
             <div class="basic-input-box">
                 <label>Motivation of Change Job :</label>
-                <input class="hide-input" readonly type="text">
+                <input class="hide-input" readonly type="text" value="{$csidata['change_job']?$csidata['change_job']:''}">
             </div>
         </div>
+        </form>
         <!--反馈-->
+        <form action="csiInsert" method="post">
         <div class="main-box">
             <p class="content-title">CSI Interview</p>
             <div class="input-box star-ex">
@@ -92,7 +96,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="introduction">
                 </div>
             </div>
             <div class="input-box">
@@ -104,7 +108,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="speaking">
                 </div>
             </div>
             <div class="input-box">
@@ -116,7 +120,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="listening">
                 </div>
             </div>
             <div class="input-box">
@@ -128,7 +132,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="reading">
                 </div>
             </div>
             <div class="input-box">
@@ -140,7 +144,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="writing">
                 </div>
             </div>
             <div class="input-box">
@@ -153,13 +157,13 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="cantonese">
                 </div>
             </div>
             <div class="input-box">
                 <label class="input-label">Existing Role</label>
                 <p class="input-tips">根据简历和介绍的基本情况进行深入提问,可以要求举出实际的一个事例来说明应聘者谈到的当前角色中进行了什么活动或有什么样的能力。</p>
-                <input class="input-content" type="text">
+                <input class="input-content" type="text" name="exist_role">
             </div>
             <div class="input-box">
                 <label class="input-label">Domain Knowledge</label>
@@ -171,7 +175,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="domain_knowledge">
                 </div>
             </div>
             <div class="input-box">
@@ -184,24 +188,24 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="system_design">
                 </div>
             </div>
             <div class="input-box">
                 <label class="input-label">Technical</label>
                 <div class="radio-box">
-                    <input type="radio" value="Java" class="radio-input" name="gender">Java
+                    <input type="radio" value="Java" class="radio-input" name="technical">Java
                 </div>
                 <div class="radio-box">
-                    <input type="radio" value="Mainframe" class="radio-input" name="gender">Mainframe
+                    <input type="radio" value="Mainframe" class="radio-input" name="technical">Mainframe
                 </div>
                 <div class="radio-box">
-                    <input type="radio" value="AS400" class="radio-input" name="gender">AS400
+                    <input type="radio" value="AS400" class="radio-input" name="technical">AS400
                 </div>
             </div>
             <div class="input-box">
                 <label class="input-label">Technical 总分</label>
-                <input class="input-content" type="text">
+                <input class="input-content" type="text" name="technical_score">
             </div>
             <div class="input-box">
                 <label class="input-label">Motivation</label>
@@ -213,7 +217,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="motivation">
                 </div>
             </div>
             <div class="input-box">
@@ -226,7 +230,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="career_plan">
                 </div>
             </div>
             <div class="input-box">
@@ -239,7 +243,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="expession">
                 </div>
             </div>
             <div class="input-box">
@@ -252,7 +256,7 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="question_asked">
                 </div>
             </div>
             <div class="input-box">
@@ -265,27 +269,28 @@
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
                     <i class="star-icon"></i>
-                    <input class="input-content" type="hidden">
+                    <input class="input-content" type="hidden" name="finally_rating">
                 </div>
             </div>
             <div class="input-box">
                 <label class="input-label">If hired,when does the Candidate join?</label>
                 <p class="input-tips">关心就职时间，超过一个月，要有特殊说明。</p>
-                <input class="input-content" type="text" id="joinDate">
+                <input class="input-content" type="text" id="joinDate" name="work_date">
             </div>
             <div class="input-box">
                 <label class="input-label">Result</label>
                 <div class="radio-box">
-                    <input type="radio" value="PASS" class="radio-input" name="gender">PASS
+                    <input type="radio" value="2" class="radio-input" name="result">PASS
                 </div>
                 <div class="radio-box">
-                    <input type="radio" value="Failure" class="radio-input" name="gender">Failure
+                    <input type="radio" value="3" class="radio-input" name="result">Failure
                 </div>
             </div>
         </div>
         <div class="submit-box">
             <button type="submit" class="submit-button">面试完成，触发通知</button>
         </div>
+        </form>
     </section>
 </div>
 <script src="../../index/js/jquery.min.js"></script>
