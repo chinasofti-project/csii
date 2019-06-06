@@ -165,7 +165,7 @@ class BasicController extends Controller
         $Basic->university = $postData['university'];
         if(isset($postData['degree'])){
             $Basic->degree = $postData['degree'];
-        
+        }
         $Basic->major = $postData['major'];
         $Basic->graduation_date = $postData['graduation_date'];
 
@@ -322,7 +322,6 @@ class BasicController extends Controller
             return '系统未找到ID为' . $id . '的记录';
         }
     }
-}
 
 }
 
