@@ -4,7 +4,7 @@ use csii_db;
 create table basic(
   id INT PRIMARY KEY AUTO_INCREMENT,
   step enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1.初始录入、2.中软面试、3.客户面试',
-  status enum('1','2','3','4','5') NOT NULL DEFAULT '1' COMMENT '1-progressing、2-CSI-Pass/CSI-Failed、3-CUI-Pass/CUI-Failed',
+  status enum('1','2','3','4','5') NOT NULL DEFAULT '1' COMMENT '1-progressing、2-CSI-Pass、3-CSI-Failed、4-CUI-Pass、5-CUI-Failed',
   personal_email varchar(225) DEFAULT NULL,
   department VARCHAR(32) NOT NULL DEFAULT '-',
   hsbc_bu VARCHAR(32) NOT NULL DEFAULT '-',
@@ -40,6 +40,7 @@ create table csiifb(
   id INT PRIMARY KEY AUTO_INCREMENT,
   cid INT,
   cn_name VARCHAR(8) NOT NULL DEFAULT '-',
+  introduction VARCHAR(2) NOT NULL DEFAULT '-',
   speaking VARCHAR(2) NOT NULL DEFAULT '-',
   listening VARCHAR(2) NOT NULL DEFAULT '-',
   reading VARCHAR(2) NOT NULL DEFAULT '-',
@@ -56,6 +57,8 @@ create table csiifb(
   question_asked VARCHAR(2) NOT NULL DEFAULT '-',
   finally_rating VARCHAR(2) NOT NULL DEFAULT '-',
   work_date VARCHAR(64) NOT NULL DEFAULT '-',
+  create_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  update_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   result VARCHAR(8) NOT NULL DEFAULT '-',
   FOREIGN KEY (cid) REFERENCES basic_background_information(id)
 );
@@ -88,6 +91,5 @@ CREATE TABLE IF NOT EXISTS `user` (
   `login_name` varchar(225) CHARACTER SET utf8 NOT NULL COMMENT '登陆账号',
   PRIMARY KEY (`id`)
 );
-
 --table update
 ALTER TABLE basic CHANGE csi_interview_email csi_interviewer_email VARCHAR(64);
