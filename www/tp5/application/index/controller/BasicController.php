@@ -99,15 +99,24 @@ class BasicController extends Controller
 
     public function cs_interviewer()
     {
+        $session_id = session('u_id');
+        if (empty($session_id)) {
+            return $this->error('没有登录或session过期', url('basic/index'));
+        }
 
-             $htmls = $this->fetch();
-              return $htmls;
+        $htmls = $this->fetch();
+        return $htmls;
     }
 
     public function hsbc_interview()
     {
-          $htmls = $this->fetch();
-          return $htmls;
+        $session_id = session('u_id');
+        if (empty($session_id)) {
+            return $this->error('没有登录或session过期', url('basic/index'));
+        }
+
+        $htmls = $this->fetch();
+        return $htmls;
 
     }
 
@@ -189,12 +198,22 @@ class BasicController extends Controller
 
     public function add()
     {
+        $session_id = session('u_id');
+        if (empty($session_id)) {
+            return $this->error('没有登录或session过期', url('basic/index'));
+        }
+
         $htmls = $this->fetch();
         return $htmls;
     }
 
     public function edit()
     {
+        $session_id = session('u_id');
+        if (empty($session_id)) {
+            return $this->error('没有登录或session过期', url('basic/index'));
+        }
+
         $id = Request::instance()->param('id/d');
 
         if ($Basic = Basic::get($id)) {
