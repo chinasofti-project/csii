@@ -11,7 +11,7 @@ create table basic(
   hr VARCHAR(8) NOT NULL DEFAULT '-',
   rm VARCHAR(8) NOT NULL DEFAULT '-',
   csi_interviewer VARCHAR(8) NOT NULL DEFAULT '-',
-  csi_interview_email VARCHAR(64) NOT NULL DEFAULT '-',
+  csi_interviewer_email VARCHAR(64) NOT NULL DEFAULT '-',
   hsbc_interviewer VARCHAR(8) NOT NULL DEFAULT '-',
   hsbc_interviewer_email VARCHAR(64) NOT NULL DEFAULT '-',
   cn_name VARCHAR(8) NOT NULL DEFAULT '-',
@@ -31,6 +31,7 @@ create table basic(
   lead_experience VARCHAR(64) NOT NULL DEFAULT '-',
   mf_as400 VARCHAR(64) NOT NULL DEFAULT '-',
   change_job VARCHAR(64) NOT NULL DEFAULT '-',
+  u_id int(11) NOT NULL DEFAULT '0' COMMENT '属于那个用户',
   create_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   update_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间'
 );
@@ -91,5 +92,3 @@ CREATE TABLE IF NOT EXISTS `user` (
   `login_name` varchar(225) CHARACTER SET utf8 NOT NULL COMMENT '登陆账号',
   PRIMARY KEY (`id`)
 );
---table update
-ALTER TABLE basic CHANGE csi_interview_email csi_interviewer_email VARCHAR(64);
