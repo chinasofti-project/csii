@@ -324,7 +324,7 @@ class BasicController extends Controller
                       ];
                             $res =db('basic')->where('id',$Csiifb['cid'])->update($status_data);
                             //echo db('basic')->getlastsql();die;
-        return '保存成功';
+                            return $this->success('您的反馈已提交',url('basic/cs_interviewer') );
 
     }
 
@@ -373,7 +373,7 @@ class BasicController extends Controller
        //return  '您的反馈已提交:';
        //更新basic状态
        $status_data =[
-           'step'=>'2',
+           'step'=>'3',
            'status'=>$Custfb['finally_result']
        ];
         $res =db('basic')->where('id',$Custfb['hid'])->update($status_data);
