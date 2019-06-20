@@ -77,6 +77,8 @@ create table custfb(
   finally_result VARCHAR(8) NOT NULL DEFAULT '-',
   reject_reason VARCHAR(64) NOT NULL DEFAULT '-',
   requirement_for_next VARCHAR(64) NOT NULL DEFAULT '-',
+  create_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  update_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   FOREIGN KEY (hid) REFERENCES basic_background_information(id)
 );
 
