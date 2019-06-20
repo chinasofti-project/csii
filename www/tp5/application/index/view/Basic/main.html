@@ -3,9 +3,9 @@
 <head>
     <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>基本信息</title>
-    <link rel="stylesheet" type="text/css" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../index/css/common.css">
-    <link rel="stylesheet" type="text/css" href="../../index/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/tp5/public/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/tp5/public/index/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/tp5/public/index/css/main.css">
 </head>
 <body class="container">
     <div class="row">
@@ -50,12 +50,99 @@
                     <td>
                         <a href="{:url('edit?id=' . $basic->getData('id'))}">编辑</a>
                         &nbsp;&nbsp;
-                        <!--<a href="{:url('delete?id=' . $basic->getData('id'))}">删除</a>-->
+                        <a href="{$basic->getData('id')}" class="detail">详情</a>                     
                     </td>
                 </tr>
                 {/volist}
             </table>
         </div>
     </div>
+ 
+
+     <div class="show_detail" style="display: none;border:2px solid rgb(43, 153, 226);width:80%;position: relative;top:-80%;left:10%;background-color: white">
+        
+    <!--<table class="table">
+            <tr style="background-color: rgb(43, 153, 226);border:none">
+                <th style="text-align: left;font-size:20px;border:none;color: white;" colspan="5">详情信息</th>
+                <td style="border: none"> <button type="button" class="close">&times;</button></td>
+            </tr> 
+            <tr>
+                <td colspan="1">姓名：李军</td>
+                <td colspan="2">性别：男</td>
+                <td colspan="3">英文名：Michael</td>
+            </tr>
+            <tr>
+                <td colspan="1">电话：15129884931</td>
+                <td colspan="2">邮箱：lijunyffs@163.com</td>
+                <td colspan="3">期望工作地点：西安</td>
+            </tr>
+            <tr>
+                <td colspan="1">学历：本科</td>
+                <td colspan="2">专业：电气工程及其自动化</td>
+                <td colspan="3">毕业院校：陕西科技大学镐京学院</td>
+            </tr>
+            <tr>
+                <td colspan="2">HR：郝娜</td>
+                <td colspan="2">RM：王蓓</td>
+                <td colspan="2">部门：财富</td>
+            </tr>
+            <tr>
+                <td colspan="6">技术：Java</td>
+            </tr>
+            <tr>
+                <td colspan="6">证书：cet-6</td>
+            </tr>
+            <tr style="border-top:2px dashed rgb(43, 153, 226)">
+                <td colspan="3">CSI面试官姓名：</td>
+                <td colspan="3">CSI面试官邮箱：</td>
+            </tr>
+            <tr>
+                <th rowspan="2" style="text-align: left;vertical-align: middle;">语言测评：</th>
+                <td>听(英)</td>
+                <td>说(英)</td>
+                <td>读(英)</td>
+                <td>写(英)</td>
+                <td>粤 语</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td colspan="2">业务领域：4</td>
+                <td colspan="2">系统领域：4</td>
+                <td colspan="2">技术领域：4</td>
+            </tr>
+            <tr>
+                <td colspan="3">技术总分：5</td>
+                <td colspan="3">最终结果：PASS</td>
+            </tr>
+            <tr  style="border-top:2px dashed rgb(43, 153, 226)">
+                <td colspan="3">HSBC面试官姓名：</td>
+                <td colspan="3">HSBC面试官邮箱：</td>
+            </tr>
+            <tr>
+                <th>能力测评</th>
+                <td>技术评分：4</td>
+                <td>语言评分：3</td>
+                <td>管理能力：2</td>
+                <td>沟通能力：4</td>
+                <td>领域评分：5</td>
+            </tr>
+            <tr>
+                <td colspan="3">最终结果：PASS</td>
+                <td colspan="3">被拒理由：无</td>
+            </tr>
+        </table>-->
+    </div>
+
+   
+
+<script src="/tp5/public/index/js/jquery.min.js"></script>
+<script src="/tp5/public/index/js/jquery-ui.min.js"></script>
+<script src="/tp5/public/index/js/detail.js"></script>
 </body>
 </html>

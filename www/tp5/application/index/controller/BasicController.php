@@ -8,6 +8,7 @@ use think\Request;
 use app\common\model\Basic;
 use app\common\model\User;
 use app\common\model\Csiifb;
+use app\common\model\Custfb;
 use SESSION;
 
 class BasicController extends Controller
@@ -327,20 +328,59 @@ class BasicController extends Controller
 
     }
 
-    public function detail()
-    {
-        $id = Request::instance()->param('id/d');
+    public function custSearch(){
+        $candidate_name = Request::instance()->param('candidate_name/s');
+        $mobile_phone = Request::instance()->param('mobile_phone/s');
+       if($candidate_name && $mobile_phone)
+       {
+            $custdata = db('basic')->where(['cn_name' => $candidate_name, 'phone' => $mobile_phone])->find();
+            if($custdata)
+            {
+                 session('cust_cid',$custdata['id']);
+                 session('cust_cName',$custdata['cn_name']);
+                 $this->assign('custdata', $custdata);
+                  // 取回打包后的数据
+                 $htmls = $this->fetch('Basic/hsbc_interview');
+                   // 将数据返回给用户
+                 return $htmls;
+            }else{
+                  return '无记录';
+            }
 
-        if ($Basic = Basic::get($id)) {
-            $this->assign('Basic', $Basic);
+       }else{
 
-            $htmls = $this->fetch();
+              return '无记录';
 
-            return $htmls;
-        } else {
-            return '系统未找到ID为' . $id . '的记录';
-        }
-    }
+       }
+
+   }
+
+   public function custfb()
+   {
+       $postData = Request::instance()->post();
+       $Custfb = new Custfb();
+       $Custfb->hid = session('cust_cid');
+       $Custfb->cn_name = session('cust_cName');
+       $Custfb->technical = $postData['technical'];
+       $Custfb->lang = $postData['lang'];
+       $Custfb->management = $postData['management'];
+       $Custfb->communication = $postData['communication'];
+       $Custfb->domain = $postData['domain'];
+       $Custfb->finally_result = $postData['result'];
+       $Custfb->reject_reason = $postData['reason'];
+       $Custfb->requirement_for_next = $postData['requirement'];        
+       $Custfb->validate(true)->save();
+       //return  '您的反馈已提交:';
+       //更新basic状态
+       $status_data =[
+           'step'=>'2',
+           'status'=>$Custfb['finally_result']
+       ];
+        $res =db('basic')->where('id',$Custfb['hid'])->update($status_data);
+        //echo db('basic')->getlastsql();die;
+
+       return $this->success('您的反馈已提交',url('basic/hsbc_interview') );
+   }
 
 }
 
